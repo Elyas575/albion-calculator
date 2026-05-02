@@ -631,6 +631,48 @@
       margin-left: 4px;
     }
 
+    /* ── Nutrition Toggle Section ── */
+    .nutrition-toggle-section {
+      margin: 1rem 0;
+    }
+
+    .nutrition-toggle-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      background: none;
+      border: 1px dashed var(--border-md);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 100%;
+      transition: border-color 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nutrition-toggle-btn:hover {
+      border-color: var(--gold-dim);
+      color: var(--gold);
+    }
+
+    #nutritionToggleIcon {
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    .nutrition-toggle-btn.active #nutritionToggleIcon {
+      transform: rotate(45deg);
+    }
+
+    .nutrition-calc-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
     /* ── Input number: hide arrows in Firefox ── */
     input[type="number"] { -moz-appearance: textfield; }
     input[type="number"]::-webkit-inner-spin-button,
@@ -665,6 +707,43 @@
       </div>
       <div class="materials-list" id="matList"></div>
       <button class="add-btn" onclick="addMaterial()">+ Add material</button>
+
+      <div class="divider"></div>
+
+      <!-- Nutrition Calculator Toggle -->
+      <div class="nutrition-toggle-section">
+        <button class="nutrition-toggle-btn" onclick="toggleNutritionCalc()">
+          <span id="nutritionToggleIcon">+</span> Nutrition Calculator
+        </button>
+        
+        <div id="nutritionCalcSection" class="nutrition-calc-section" style="display: none;">
+          <div class="section-label">Nutrition Calculator</div>
+          <div class="nutrition-inputs">
+            <div class="nutrition-input-row">
+              <label for="itemValueMain">Item Value</label>
+              <input type="number" id="itemValueMain" min="0" step="1" value="6" oninput="calculateNutritionMain()" />
+            </div>
+            
+            <div class="nutrition-input-row">
+              <label for="shopPriceMain">Shop Price per 100 Nutrition</label>
+              <input type="number" id="shopPriceMain" min="0" step="1" value="500" oninput="calculateNutritionMain()" />
+              <span class="input-unit">silver</span>
+            </div>
+          </div>
+          
+          <div class="nutrition-results">
+            <div class="nutrition-result-row">
+              <span class="result-label">Nutrition Consumed:</span>
+              <span class="result-value" id="nutritionResultMain">0.675</span>
+            </div>
+            <div class="nutrition-result-row">
+              <span class="result-label">Shop Fee:</span>
+              <span class="result-value" id="shopFeeResultMain">3.375</span>
+              <span class="result-unit">silver</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="divider"></div>
 
@@ -911,6 +990,37 @@
       // Update display
       document.getElementById('nutritionResult').textContent = nutritionConsumed.toFixed(3);
       document.getElementById('shopFeeResult').textContent = shopFee.toFixed(3);
+    }
+
+    function calculateNutritionMain() {
+      const itemValue = parseFloat(document.getElementById('itemValueMain').value) || 0;
+      const shopPrice = parseFloat(document.getElementById('shopPriceMain').value) || 0;
+      
+      // Calculate nutrition consumed: Item Value × 0.1125
+      const nutritionConsumed = itemValue * 0.1125;
+      
+      // Calculate shop fee: (nutrition consumed / 100) × shop price per 100 nutrition
+      const shopFee = (nutritionConsumed / 100) * shopPrice;
+      
+      // Update display
+      document.getElementById('nutritionResultMain').textContent = nutritionConsumed.toFixed(3);
+      document.getElementById('shopFeeResultMain').textContent = shopFee.toFixed(3);
+    }
+
+    function toggleNutritionCalc() {
+      const section = document.getElementById('nutritionCalcSection');
+      const button = document.querySelector('.nutrition-toggle-btn');
+      const icon = document.getElementById('nutritionToggleIcon');
+      
+      if (section.style.display === 'none') {
+        section.style.display = 'block';
+        button.classList.add('active');
+        icon.textContent = '−';
+      } else {
+        section.style.display = 'none';
+        button.classList.remove('active');
+        icon.textContent = '+';
+      }
     }
 
     // Init
