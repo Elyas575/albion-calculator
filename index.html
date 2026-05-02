@@ -415,6 +415,222 @@
       }
     }
 
+    /* ── Nutrition Section ── */
+    .nutrition-section {
+      margin-top: 2rem;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .nutrition-content h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold-pale);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    .nutrition-content h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.03em;
+    }
+
+    .nutrition-content h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .nutrition-content p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .formula-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .formula {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold-pale);
+      text-align: center;
+      margin: 0.8rem 0;
+      padding: 0.5rem;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-sm);
+    }
+
+    .formula-explanation p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0.4rem 0;
+    }
+
+    .example-steps {
+      margin: 1rem 0;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 0.8rem;
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      flex: 1;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+
+    .step-content code {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 2px 6px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.9rem;
+      color: var(--gold-pale);
+    }
+
+    /* ── Nutrition Calculator ── */
+    .nutrition-calculator {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .nutrition-calculator h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .nutrition-calculator > p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .nutrition-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .nutrition-input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nutrition-input-row label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+      min-width: 180px;
+    }
+
+    .nutrition-input-row input[type="number"] {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      color: var(--text);
+      width: 120px;
+      text-align: right;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .nutrition-input-row input[type="number"]:focus {
+      border-color: var(--gold);
+    }
+
+    .input-unit {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
+    .nutrition-results {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem;
+    }
+
+    .nutrition-result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+    }
+
+    .result-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .result-value {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold-pale);
+    }
+
+    .result-unit {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-left: 4px;
+    }
+
     /* ── Input number: hide arrows in Firefox ── */
     input[type="number"] { -moz-appearance: textfield; }
     input[type="number"]::-webkit-inner-spin-button,
@@ -430,7 +646,6 @@
     </div>
     <p>Enter your raw materials and return bonus to find the true total cost after the refining bonus.</p>
   </header>
-
 
   <main class="calc-card">
     <div class="card-header">
@@ -503,6 +718,91 @@
 
     </div>
   </main>
+
+  <!-- Nutrition Section -->
+  <section class="nutrition-section">
+    <div class="calc-card">
+      <div class="card-header">
+        <div class="card-header-dot"></div>
+        <span>Nutrition System</span>
+      </div>
+      <div class="card-body">
+        <div class="nutrition-content">
+          <h2>What is Nutrition?</h2>
+          <p>Think of Nutrition as the battery power for crafting stations in Albion Online. Every time you craft or refine an item, the station "eats" some food to get the job done. If the station runs out of nutrition, it stops working until the owner feeds it.</p>
+          
+          <h3>How to Calculate Nutrition Cost</h3>
+          <p>The amount of nutrition a station uses depends entirely on the Item Value of what you are making.</p>
+          
+          <div class="formula-box">
+            <h4>The Simple Formula:</h4>
+            <div class="formula">Nutrition Consumed = Item Value × 0.1125</div>
+            <div class="formula-explanation">
+              <p><strong>Item Value:</strong> A fixed number found at the bottom of any item's info window (click the item in your inventory to see it).</p>
+              <p><strong>0.1125:</strong> The magic number used by the game to convert value into fuel cost.</p>
+            </div>
+          </div>
+          
+          <h3>Example Calculation</h3>
+          <p>If you are refining Tier 4 Worked Leather:</p>
+          <div class="example-steps">
+            <div class="step">
+              <span class="step-number">1</span>
+              <div class="step-content">
+                <strong>Find Item Value:</strong> A piece of T4 Leather has an Item Value of 6.
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <div class="step-content">
+                <strong>Apply Formula:</strong> <code>6 × 0.1125 = 0.675</code>
+              </div>
+            </div>
+            <div class="step">
+              <span class="step-number">3</span>
+              <div class="step-content">
+                <strong>Result:</strong> Every time you refine one T4 Leather, the station loses 0.675 units of nutrition.
+              </div>
+            </div>
+          </div>
+          
+          <h3>Why does this matter?</h3>
+          <p>Shop owners in cities charge you a silver fee based on this number. They usually set a price per 100 units of nutrition used. If a shop tax is 500 Silver, you aren't paying for the item—you are paying for the "fuel" it took to make it.</p>
+          
+          <!-- Nutrition Calculator -->
+          <div class="nutrition-calculator">
+            <h3>Nutrition Calculator</h3>
+            <p>Calculate the nutrition cost and shop fees for your items.</p>
+            
+            <div class="nutrition-inputs">
+              <div class="nutrition-input-row">
+                <label for="itemValue">Item Value</label>
+                <input type="number" id="itemValue" min="0" step="1" value="6" oninput="calculateNutrition()" />
+              </div>
+              
+              <div class="nutrition-input-row">
+                <label for="shopPrice">Shop Price per 100 Nutrition</label>
+                <input type="number" id="shopPrice" min="0" step="1" value="500" oninput="calculateNutrition()" />
+                <span class="input-unit">silver</span>
+              </div>
+            </div>
+            
+            <div class="nutrition-results">
+              <div class="nutrition-result-row">
+                <span class="result-label">Nutrition Consumed:</span>
+                <span class="result-value" id="nutritionResult">0.675</span>
+              </div>
+              <div class="nutrition-result-row">
+                <span class="result-label">Shop Fee:</span>
+                <span class="result-value" id="shopFeeResult">3.375</span>
+                <span class="result-unit">silver</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="page-footer">
   </footer>
@@ -598,8 +898,24 @@
       document.getElementById('b-net').textContent      = fmt(net)      + ' silver';
     }
 
+    function calculateNutrition() {
+      const itemValue = parseFloat(document.getElementById('itemValue').value) || 0;
+      const shopPrice = parseFloat(document.getElementById('shopPrice').value) || 0;
+      
+      // Calculate nutrition consumed: Item Value × 0.1125
+      const nutritionConsumed = itemValue * 0.1125;
+      
+      // Calculate shop fee: (nutrition consumed / 100) × shop price per 100 nutrition
+      const shopFee = (nutritionConsumed / 100) * shopPrice;
+      
+      // Update display
+      document.getElementById('nutritionResult').textContent = nutritionConsumed.toFixed(3);
+      document.getElementById('shopFeeResult').textContent = shopFee.toFixed(3);
+    }
+
     // Init
     renderMaterials();
+    calculateNutrition();
   </script>
 </body>
 </html>
