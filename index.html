@@ -793,6 +793,100 @@
             <span class="bv final" id="b-net">0 silver</span>
           </div>
         </div>
+        
+        <!-- Cost Scaling Examples -->
+        <div class="scaling-examples" style="margin-top: 1rem; padding: 1rem; background: var(--bg-input); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+          <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem; text-align: center;">
+             Scale Up Your Costs
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-bottom: 0.8rem;">
+            Multiply the per-item cost by your desired quantity
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; font-size: 0.75rem;">
+            <div style="text-align: center; padding: 0.3rem; background: var(--bg-raised); border-radius: var(--radius-sm);">
+              <div style="color: var(--text-muted);">100 items</div>
+              <div style="color: var(--gold-pale); font-weight: 600;" id="scale-100">× 100 = 0</div>
+            </div>
+            <div style="text-align: center; padding: 0.3rem; background: var(--bg-raised); border-radius: var(--radius-sm);">
+              <div style="color: var(--text-muted);">500 items</div>
+              <div style="color: var(--gold-pale); font-weight: 600;" id="scale-500">× 500 = 0</div>
+            </div>
+            <div style="text-align: center; padding: 0.3rem; background: var(--bg-raised); border-radius: var(--radius-sm);">
+              <div style="color: var(--text-muted);">1,000 items</div>
+              <div style="color: var(--gold-pale); font-weight: 600;" id="scale-1000">× 1,000 = 0</div>
+            </div>
+            <div style="text-align: center; padding: 0.3rem; background: var(--bg-raised); border-radius: var(--radius-sm);">
+              <div style="color: var(--text-muted);">5,000 items</div>
+              <div style="color: var(--gold-pale); font-weight: 600;" id="scale-5000">× 5,000 = 0</div>
+            </div>
+          </div>
+          
+          <!-- Custom Quantity Input -->
+          <div style="margin-top: 1rem; padding: 0.8rem; background: var(--bg-raised); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <div style="font-family: 'Cinzel', serif; font-size: 0.8rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem; text-align: center;">
+              Custom Quantity
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <input type="number" id="customQuantity" min="1" step="1" value="1000" 
+                     style="width: 120px; padding: 0.3rem; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); text-align: center; font-family: 'Crimson Pro', serif; font-size: 0.9rem;"
+                     oninput="updateCustomQuantity()" />
+              <span style="color: var(--text-muted); font-size: 0.8rem;">items =</span>
+              <span style="color: var(--gold-pale); font-weight: 600; font-size: 0.9rem;" id="customResult">0 silver</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Profit Calculator -->
+        <div class="profit-calculator" style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-input); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+          <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 600; color: var(--gold); margin-bottom: 0.5rem; text-align: center;">
+            💰 Profit Calculator
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1rem;">
+            <div style="text-align: center;">
+              <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.3rem;">Sell Price per Item</label>
+              <input type="number" id="sellPrice" min="0" step="1" value="2000" 
+                     style="width: 100%; padding: 0.3rem; background: var(--bg-raised); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); text-align: center; font-family: 'Crimson Pro', serif; font-size: 0.9rem;"
+                     oninput="calculateProfits()" />
+              <span style="color: var(--text-muted); font-size: 0.7rem;">silver</span>
+            </div>
+            <div style="text-align: center;">
+              <label style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.3rem;">Quantity to Sell</label>
+              <input type="number" id="sellQuantity" min="1" step="1" value="1000" 
+                     style="width: 100%; padding: 0.3rem; background: var(--bg-raised); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); text-align: center; font-family: 'Crimson Pro', serif; font-size: 0.9rem;"
+                     oninput="calculateProfits()" />
+              <span style="color: var(--text-muted); font-size: 0.7rem;">items</span>
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; font-size: 0.8rem;">
+            <div style="text-align: center; padding: 0.5rem; background: var(--bg-raised); border-radius: var(--radius-sm);">
+              <div style="color: var(--text-muted); margin-bottom: 0.2rem;">Profit Per Item</div>
+              <div style="color: var(--green-pale); font-weight: 600; font-size: 1rem;" id="profitPerItem">0 silver</div>
+            </div>
+            <div style="text-align: center; padding: 0.5rem; background: var(--bg-raised); border-radius: var(--radius-sm);">
+              <div style="color: var(--text-muted); margin-bottom: 0.2rem;">Total Profit</div>
+              <div style="color: var(--green-pale); font-weight: 600; font-size: 1rem;" id="totalProfit">0 silver</div>
+            </div>
+          </div>
+          
+          <div style="margin-top: 0.8rem; padding: 0.5rem; background: var(--bg-raised); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 0.3rem;">Revenue Breakdown</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; font-size: 0.7rem;">
+              <div style="text-align: center;">
+                <div style="color: var(--text-muted);">Revenue</div>
+                <div style="color: var(--gold-pale); font-weight: 600;" id="totalRevenue">0</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="color: var(--text-muted);">Cost</div>
+                <div style="color: var(--blue-pale); font-weight: 600;" id="totalCost">0</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="color: var(--text-muted);">Profit</div>
+                <div style="color: var(--green-pale); font-weight: 600;" id="profitMargin">0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -972,9 +1066,21 @@
       document.getElementById('r-net').textContent      = fmt(net);
 
       document.getElementById('b-gross').textContent    = fmt(gross)    + ' silver';
-      document.getElementById('b-rate').textContent     = '\u2212' + returnRate.toFixed(1) + '%';
-      document.getElementById('b-returned').textContent = '\u2212' + fmt(returned) + ' silver';
+      document.getElementById('b-rate').textContent     = returnRate.toFixed(1) + '%';
+      document.getElementById('b-returned').textContent = '+' + fmt(returned) + ' silver';
       document.getElementById('b-net').textContent      = fmt(net)      + ' silver';
+      
+      // Update scaling examples with base cost (without nutrition)
+      updateScalingExamples(net);
+      
+      // Update profit calculator
+      calculateProfits();
+      
+      // If nutrition calculator is open, update it too
+      const nutritionSection = document.getElementById('nutritionCalcSection');
+      if (nutritionSection && nutritionSection.style.display !== 'none') {
+        calculateNutritionMain();
+      }
     }
 
     function calculateNutrition() {
@@ -1005,6 +1111,128 @@
       // Update display
       document.getElementById('nutritionResultMain').textContent = nutritionConsumed.toFixed(3);
       document.getElementById('shopFeeResultMain').textContent = shopFee.toFixed(3);
+      
+      // Update main results to include nutrition cost
+      updateMainResultsWithNutrition(shopFee);
+    }
+
+    function updateMainResultsWithNutrition(nutritionFee) {
+      const gross = materials.reduce((s, m) => s + (m.qty * m.cost), 0);
+      const returned = gross * (returnRate / 100);
+      const net = gross - returned;
+      const totalWithNutrition = net + nutritionFee;
+      
+      // Update the main results section to show nutrition-included cost
+      const netElement = document.getElementById('b-net');
+      if (netElement) {
+        const currentText = netElement.textContent;
+        const baseCost = fmt(net);
+        
+        // Show both costs: base cost and nutrition cost
+        netElement.innerHTML = `
+          <div style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2px;">Without Nutrition: ${baseCost} silver</div>
+          <div style="font-size: 1.05rem; font-weight: 600; color: var(--green-pale);">With Nutrition: ${fmt(Math.round(totalWithNutrition))} silver</div>
+        `;
+      }
+      
+      // Update scaling examples
+      updateScalingExamples(totalWithNutrition);
+    }
+
+    function updateScalingExamples(perItemCost) {
+      const quantities = [100, 500, 1000, 5000];
+      
+      quantities.forEach(qty => {
+        const element = document.getElementById(`scale-${qty}`);
+        if (element) {
+          const totalCost = Math.round(perItemCost * qty);
+          element.textContent = `× ${qty.toLocaleString()} = ${fmt(totalCost)}`;
+        }
+      });
+      
+      // Update custom quantity as well
+      updateCustomQuantity();
+    }
+
+    function updateCustomQuantity() {
+      const quantity = parseFloat(document.getElementById('customQuantity').value) || 1;
+      const nutritionSection = document.getElementById('nutritionCalcSection');
+      let perItemCost;
+      
+      // Determine which cost to use based on nutrition calculator state
+      if (nutritionSection && nutritionSection.style.display !== 'none') {
+        // Nutrition calculator is open - use nutrition-included cost
+        const itemValue = parseFloat(document.getElementById('itemValueMain').value) || 0;
+        const shopPrice = parseFloat(document.getElementById('shopPriceMain').value) || 0;
+        const nutritionConsumed = itemValue * 0.1125;
+        const shopFee = (nutritionConsumed / 100) * shopPrice;
+        const gross = materials.reduce((s, m) => s + (m.qty * m.cost), 0);
+        const returned = gross * (returnRate / 100);
+        const net = gross - returned;
+        perItemCost = net + shopFee;
+      } else {
+        // Nutrition calculator is closed - use base cost
+        const gross = materials.reduce((s, m) => s + (m.qty * m.cost), 0);
+        const returned = gross * (returnRate / 100);
+        perItemCost = gross - returned;
+      }
+      
+      const totalCost = Math.round(perItemCost * quantity);
+      document.getElementById('customResult').textContent = `${fmt(totalCost)} silver`;
+    }
+
+    function calculateProfits() {
+      const sellPrice = parseFloat(document.getElementById('sellPrice').value) || 0;
+      const sellQuantity = parseFloat(document.getElementById('sellQuantity').value) || 1;
+      const nutritionSection = document.getElementById('nutritionCalcSection');
+      let perItemCost;
+      
+      // Determine which cost to use based on nutrition calculator state
+      if (nutritionSection && nutritionSection.style.display !== 'none') {
+        // Nutrition calculator is open - use nutrition-included cost
+        const itemValue = parseFloat(document.getElementById('itemValueMain').value) || 0;
+        const shopPrice = parseFloat(document.getElementById('shopPriceMain').value) || 0;
+        const nutritionConsumed = itemValue * 0.1125;
+        const shopFee = (nutritionConsumed / 100) * shopPrice;
+        const gross = materials.reduce((s, m) => s + (m.qty * m.cost), 0);
+        const returned = gross * (returnRate / 100);
+        const net = gross - returned;
+        perItemCost = net + shopFee;
+      } else {
+        // Nutrition calculator is closed - use base cost
+        const gross = materials.reduce((s, m) => s + (m.qty * m.cost), 0);
+        const returned = gross * (returnRate / 100);
+        perItemCost = gross - returned;
+      }
+      
+      // Calculate profits
+      const profitPerItem = sellPrice - perItemCost;
+      const totalProfit = profitPerItem * sellQuantity;
+      const totalRevenue = sellPrice * sellQuantity;
+      const totalCost = perItemCost * sellQuantity;
+      const profitMargin = sellPrice > 0 ? (profitPerItem / sellPrice * 100) : 0;
+      
+      // Update display
+      document.getElementById('profitPerItem').textContent = `${fmt(Math.round(profitPerItem))} silver`;
+      document.getElementById('totalProfit').textContent = `${fmt(Math.round(totalProfit))} silver`;
+      document.getElementById('totalRevenue').textContent = fmt(Math.round(totalRevenue));
+      document.getElementById('totalCost').textContent = fmt(Math.round(totalCost));
+      document.getElementById('profitMargin').textContent = `${profitMargin.toFixed(1)}%`;
+      
+      // Color code profit
+      const profitPerItemElement = document.getElementById('profitPerItem');
+      const totalProfitElement = document.getElementById('totalProfit');
+      
+      if (profitPerItem > 0) {
+        profitPerItemElement.style.color = 'var(--green-pale)';
+        totalProfitElement.style.color = 'var(--green-pale)';
+      } else if (profitPerItem < 0) {
+        profitPerItemElement.style.color = 'var(--red-pale)';
+        totalProfitElement.style.color = 'var(--red-pale)';
+      } else {
+        profitPerItemElement.style.color = 'var(--text)';
+        totalProfitElement.style.color = 'var(--text)';
+      }
     }
 
     function toggleNutritionCalc() {
@@ -1016,10 +1244,13 @@
         section.style.display = 'block';
         button.classList.add('active');
         icon.textContent = '−';
+        calculateNutritionMain();
       } else {
         section.style.display = 'none';
         button.classList.remove('active');
         icon.textContent = '+';
+        // Reset main results to show only base cost
+        calculate();
       }
     }
 
