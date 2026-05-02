@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albion Refining Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0e0d0b;
+      --bg-card:    #17150f;
+      --bg-raised:  #1e1b13;
+      --bg-input:   #131109;
+      --border:     rgba(180,155,90,0.18);
+      --border-md:  rgba(180,155,90,0.32);
+      --border-hi:  rgba(180,155,90,0.55);
+      --gold:       #c9a84c;
+      --gold-dim:   #8a6e2f;
+      --gold-pale:  #f0d98a;
+      --text:       #e8dfc8;
+      --text-muted: #8a8070;
+      --text-dim:   #55503f;
+      --green:      #5a9e62;
+      --green-pale: #a8d4ac;
+      --blue:       #4a82b8;
+      --blue-pale:  #9ec2e8;
+      --red:        #c0503a;
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  14px;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 4rem;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      max-width: 560px;
+    }
+
+    .page-header .icon-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .hammer-icon {
+      width: 48px; height: 48px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .page-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.3rem, 4vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--gold-pale);
+    }
+
+    .page-header p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+      line-height: 1.6;
+    }
+
+    /* ── Decorative line ── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 auto 2.5rem;
+      max-width: 400px;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-md));
+    }
+    .ornament-line.right {
+      background: linear-gradient(to left, transparent, var(--border-md));
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold-dim);
+      transform: rotate(45deg);
+    }
+
+    /* ── Main card ── */
+    .calc-card {
+      width: 100%;
+      max-width: 620px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: var(--bg-raised);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-header-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+    }
+
+    .card-header span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .card-body { padding: 1.5rem; }
+
+    /* ── Section labels ── */
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Column headers ── */
+    .col-headers {
+      display: grid;
+      grid-template-columns: 1fr 72px 110px 28px;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .col-headers span {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      padding: 0 8px;
+    }
+    .col-headers span:nth-child(2),
+    .col-headers span:nth-child(3) { text-align: right; }
+
+    /* ── Material rows ── */
+    .materials-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .material-row {
+      display: grid;
+      grid-template-columns: 1fr 72px 110px 28px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .material-row input[type="text"],
+    .material-row input[type="number"] {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      color: var(--text);
+      width: 100%;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    .material-row input:focus { border-color: var(--border-hi); }
+    .material-row input[type="number"] { text-align: right; }
+    .material-row input::placeholder { color: var(--text-dim); }
+
+    .remove-btn {
+      width: 28px; height: 28px;
+      background: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      color: var(--text-dim);
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-sm);
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1;
+      padding: 0;
+    }
+    .remove-btn:hover { color: var(--red); border-color: rgba(192,80,58,0.3); }
+
+    /* ── Add button ── */
+    .add-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      background: none;
+      border: 1px dashed var(--border-md);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 100%;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .add-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    /* ── Return rate section ── */
+    .return-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .return-row label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Custom range slider */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      flex: 1;
+      min-width: 80px;
+      height: 4px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+    }
+
+    .pct-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .pct-input-wrap input[type="number"] {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      background: var(--bg-input);
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-sm);
+      padding: 5px 8px;
+      color: var(--gold-pale);
+      width: 70px;
+      text-align: right;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .pct-input-wrap input[type="number"]:focus { border-color: var(--gold); }
+    .pct-input-wrap span { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+
+
+
+    /* ── Results section ── */
+    .results-section {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    .stat-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .stat-card.stat-returned .stat-value { color: var(--blue-pale); }
+    .stat-card.stat-net .stat-value { color: var(--green-pale); }
+
+    /* ── Breakdown ── */
+    .breakdown {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.9rem;
+      padding: 3px 0;
+    }
+
+    .breakdown-row .bl { color: var(--text-muted); }
+    .breakdown-row .bv { font-weight: 500; color: var(--text); }
+    .breakdown-row .bv.minus { color: var(--blue-pale); }
+    .breakdown-row .bv.final { color: var(--green-pale); font-size: 1.05rem; font-weight: 600; }
+
+    .breakdown-row.total {
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      padding-top: 10px;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 500px) {
+      body { padding: 1.25rem 0.75rem 3rem; }
+      .card-body { padding: 1.1rem 1rem; }
+
+      .col-headers,
+      .material-row {
+        grid-template-columns: 1fr 58px 90px 26px;
+        gap: 5px;
+      }
+
+      .results-grid { grid-template-columns: 1fr 1fr; }
+      .stat-card.stat-net { grid-column: 1 / -1; }
+
+      .return-row { gap: 8px; }
+      .pct-input-wrap input[type="number"] { width: 60px; }
+    }
+
+    @media (max-width: 360px) {
+      .col-headers,
+      .material-row {
+        grid-template-columns: 1fr 50px 80px 24px;
+        gap: 4px;
+      }
+    }
+
+    /* ── Input number: hide arrows in Firefox ── */
+    input[type="number"] { -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="icon-row">
+      <div class="hammer-icon">⚒</div>
+      <h1>Refining Calculator</h1>
+    </div>
+    <p>Enter your raw materials and return bonus to find the true cost after the refining bonus.</p>
+  </header>
+
+  <div class="ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-diamond"></div>
+    <div class="ornament-line right"></div>
+  </div>
+
+  <main class="calc-card">
+    <div class="card-header">
+      <div class="card-header-dot"></div>
+      <span>Materials &amp; Costs</span>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Materials -->
+      <div class="section-label">Raw materials (Non Artifacts only)</div>
+      <div class="col-headers">
+        <span>Material</span>
+        <span>Qty</span>
+        <span>Cost / unit</span>
+        <span></span>
+      </div>
+      <div class="materials-list" id="matList"></div>
+      <button class="add-btn" onclick="addMaterial()">+ Add material</button>
+
+      <div class="divider"></div>
+
+      <!-- Return rate -->
+      <div class="section-label">Return rate</div>
+      <div class="return-row">
+        <label>Bonus</label>
+        <input type="range" id="returnSlider" min="0" max="100" step="0.1" value="37" oninput="onSlider(this.value)" />
+        <div class="pct-input-wrap">
+          <input type="number" id="returnInput" min="0" step="0.1" value="37.0" oninput="onManualInput(this.value)" />
+          <span>%</span>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="results-section">
+        <div class="results-grid">
+          <div class="stat-card">
+            <div class="stat-label">Gross cost</div>
+            <div class="stat-value" id="r-gross">0</div>
+          </div>
+          <div class="stat-card stat-returned">
+            <div class="stat-label">Returned</div>
+            <div class="stat-value" id="r-returned">0</div>
+          </div>
+          <div class="stat-card stat-net">
+            <div class="stat-label">True cost</div>
+            <div class="stat-value" id="r-net">0</div>
+          </div>
+        </div>
+
+        <div class="breakdown">
+          <div class="breakdown-row">
+            <span class="bl">Total material cost</span>
+            <span class="bv" id="b-gross">0 silver</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bl">Return rate</span>
+            <span class="bv minus" id="b-rate">−37.0%</span>
+          </div>
+          <div class="breakdown-row">
+            <span class="bl">Materials returned value</span>
+            <span class="bv minus" id="b-returned">−0 silver</span>
+          </div>
+          <div class="breakdown-row total">
+            <span class="bl" style="font-weight:500; color: var(--text);">True refining cost</span>
+            <span class="bv final" id="b-net">0 silver</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>Albion Online Refining Calculator &mdash; silver values update in real time</p>
+  </footer>
+
+  <script>
+    let materials = [
+      { name: 'Rough Hide', qty: 2, cost: 1200 },
+      { name: 'Thin Hide',  qty: 1, cost: 300  },
+    ];
+    let returnRate = 37;
+
+    function fmt(n) {
+      return Math.round(n).toLocaleString();
+    }
+
+    function renderMaterials() {
+      const list = document.getElementById('matList');
+      list.innerHTML = '';
+      materials.forEach((m, i) => {
+        const row = document.createElement('div');
+        row.className = 'material-row';
+        row.innerHTML = `
+          <input type="text"   value="${m.name}" placeholder="Material name"
+            oninput="materials[${i}].name = this.value" />
+          <input type="number" value="${m.qty}"  min="0" step="1"
+            oninput="materials[${i}].qty = parseFloat(this.value) || 0; calculate()" />
+          <input type="number" value="${m.cost}" min="0" step="1"
+            oninput="materials[${i}].cost = parseFloat(this.value) || 0; calculate()" />
+          <button class="remove-btn" onclick="removeMaterial(${i})" title="Remove">&times;</button>
+        `;
+        list.appendChild(row);
+      });
+      calculate();
+    }
+
+    function addMaterial() {
+      materials.push({ name: '', qty: 1, cost: 0 });
+      renderMaterials();
+      // focus the new name input
+      const rows = document.querySelectorAll('.material-row');
+      const last = rows[rows.length - 1];
+      if (last) last.querySelector('input[type="text"]').focus();
+    }
+
+    function removeMaterial(i) {
+      if (materials.length > 1) {
+        materials.splice(i, 1);
+        renderMaterials();
+      }
+    }
+
+    function syncSlider() {
+      document.getElementById('returnSlider').value = Math.min(returnRate, 100);
+    }
+
+    function syncInput() {
+      document.getElementById('returnInput').value = returnRate.toFixed(1);
+    }
+
+    function onSlider(v) {
+      returnRate = parseFloat(v);
+      syncInput();
+      calculate();
+    }
+
+    function onManualInput(v) {
+      const parsed = parseFloat(v);
+      if (isNaN(parsed)) return;
+      returnRate = Math.max(0, parsed);
+      syncSlider();
+      calculate();
+    }
+
+    function setReturn(v) {
+      returnRate = v;
+      syncSlider();
+      syncInput();
+      calculate();
+    }
+
+    function calculate() {
+      const gross    = materials.reduce((s, m) => s + (m.qty * m.cost), 0);
+      const returned = gross * (returnRate / 100);
+      const net      = gross - returned;
+
+      document.getElementById('r-gross').textContent    = fmt(gross);
+      document.getElementById('r-returned').textContent = fmt(returned);
+      document.getElementById('r-net').textContent      = fmt(net);
+
+      document.getElementById('b-gross').textContent    = fmt(gross)    + ' silver';
+      document.getElementById('b-rate').textContent     = '\u2212' + returnRate.toFixed(1) + '%';
+      document.getElementById('b-returned').textContent = '\u2212' + fmt(returned) + ' silver';
+      document.getElementById('b-net').textContent      = fmt(net)      + ' silver';
+    }
+
+    // Init
+    renderMaterials();
+  </script>
+</body>
+</html>
