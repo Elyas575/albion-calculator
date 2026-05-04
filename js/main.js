@@ -51,7 +51,7 @@ function resetCalculator() {
   renderMaterials();
   
   // Reset return rate
-  returnRate = 37.0;
+  returnRate = 15.3;
   document.getElementById('returnSlider').value = returnRate;
   document.getElementById('returnInput').value = returnRate.toFixed(1);
   
@@ -62,7 +62,7 @@ function resetCalculator() {
   
   // Reset nutrition
   document.getElementById('nutItemVal').value = 16;
-  document.getElementById('nutShopPrice').value = 500;
+  document.getElementById('nutShopPrice').value = 550;
   
   // Recalculate
   calculate();
