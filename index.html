@@ -628,6 +628,30 @@
       border-radius: var(--radius-sm);
     }
 
+    /* ── Tab info banner ── */
+    .tab-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--gold-dim);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.9rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .tab-info-text {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .tab-info-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
     /* ── Footer ── */
     .page-footer {
       margin-top: 1.5rem;
@@ -666,6 +690,197 @@
         gap: 4px;
       }
     }
+    .guide-trade-route {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .guide-trade-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-md);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.85rem;
+    }
+
+    .guide-trade-icon {
+      font-size: 15px;
+      flex-shrink: 0;
+      line-height: 1.5;
+    }
+
+    .guide-trade-city {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .guide-trade-action {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .guide-trade-action strong { color: var(--green-pale); font-weight: 500; }
+
+    .guide-trade-arrow {
+      text-align: center;
+      color: var(--gold-dim);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 3px 0;
+      margin-left: 18px;
+    }
+
+    /* ── Guide panel ── */
+    .guide-why {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--gold-dim);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .guide-why-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gold-pale);
+      margin-bottom: 0.45rem;
+    }
+
+    .guide-why-body {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .guide-why-body strong { color: var(--text); font-weight: 500; }
+    .guide-why-body em { color: var(--gold); font-style: normal; }
+
+    .guide-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.3rem 0;
+    }
+
+    .guide-section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 1rem;
+    }
+
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding-bottom: 1.1rem;
+      position: relative;
+    }
+
+    .guide-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 13px;
+      top: 28px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border-md);
+    }
+
+    .guide-step-num {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      background: var(--bg-raised);
+      border: 1px solid var(--border-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-step-content { flex: 1; padding-top: 3px; }
+
+    .guide-step-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .guide-step-body {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .guide-step-body strong { color: var(--text); font-weight: 500; }
+
+    .guide-tabs-explained {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .guide-tab-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 1rem;
+    }
+
+    .guide-tab-card-header {
+      margin-bottom: 0.45rem;
+    }
+
+    .guide-tab-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--bg-raised);
+      border: 1px solid var(--border-md);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    .guide-tab-card-body {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
   </style>
 </head>
 <body>
@@ -686,10 +901,18 @@
       <button class="tab-btn"        onclick="switchTab('scale')">Scale</button>
       <button class="tab-btn"        onclick="switchTab('profit')">Profit</button>
       <button class="tab-btn"        onclick="switchTab('nutrition')">Nutrition</button>
+      <button class="tab-btn"        onclick="switchTab('guide')">Guide</button>
     </div>
 
     <!-- ── MATERIALS PANEL ── -->
     <div class="panel active" id="panel-materials">
+
+      <div class="tab-info">
+        <span class="tab-info-text">
+          <strong>Enter the raw materials and their market prices for one item.</strong>
+          Set your refining return bonus below. This is the percentage of materials the game gives back to you. Your true cost is what you actually spend after accounting for that return.
+        </span>
+      </div>
 
       <div class="section-label">Raw materials (per item)</div>
 
@@ -753,6 +976,13 @@
     <!-- ── SCALE PANEL ── -->
     <div class="panel" id="panel-scale">
 
+      <div class="tab-info">
+        <span class="tab-info-text">
+          <strong>See how your per-item cost scales across larger batches.</strong>
+          All figures use the true cost from the Materials tab. Use the custom input to calculate any quantity you have in mind.
+        </span>
+      </div>
+
       <div class="section-label">Cost at quantity</div>
 
       <div class="scale-grid">
@@ -787,6 +1017,13 @@
 
     <!-- ── PROFIT PANEL ── -->
     <div class="panel" id="panel-profit">
+
+      <div class="tab-info">
+        <span class="tab-info-text">
+          <strong>Enter your expected sell price and how many items you plan to sell.</strong>
+          Profit is calculated against the true cost from the Materials tab. Green means you are making money. Red means you are selling at a loss.
+        </span>
+      </div>
 
       <div class="section-label">Sale parameters</div>
 
@@ -833,6 +1070,13 @@
     <!-- ── NUTRITION PANEL ── -->
     <div class="panel" id="panel-nutrition">
 
+      <div class="tab-info">
+        <span class="tab-info-text">
+          <strong>Calculate the station fee you pay per craft.</strong>
+          Every item you refine drains the station's nutrition. The owner charges you in silver based on how much your item consumed. Find the Item Value in the item's info window in-game.
+        </span>
+      </div>
+
       <div class="section-label">Nutrition calculator</div>
 
       <div class="nut-inputs">
@@ -862,10 +1106,145 @@
         <strong>How it works</strong><br>
         Every craft consumes station nutrition based on the item's value. The station owner charges you per 100 nutrition used.
         <span class="formula-highlight">Nutrition = Item Value × 0.1125</span>
-        <strong>Example:</strong> T4 Worked Leather has Item Value 6.<br>
-        6 × 0.1125 = <strong>0.675</strong> nutrition consumed per craft.<br>
-        At 500 silver per 100 nutrition → fee = <strong>3.375 silver</strong>.
+        <strong>Example:</strong> T4 Worked Leather has Item Value 16.<br>
+        16 × 0.1125 = <strong>1.8</strong> nutrition consumed per craft.<br>
+        At 500 silver per 100 nutrition the fee is <strong>3.375 silver</strong>.
       </div>
+    </div>
+
+  </main>
+
+    <!-- ── GUIDE PANEL ── -->
+    <div class="panel" id="panel-guide">
+
+      <div class="guide-why">
+        <div class="guide-why-title">Why use this calculator?</div>
+        <div class="guide-why-body">
+          Every time you refine materials, the game gives a percentage of them back to you. That's your return bonus. Most players never account for it and end up calculating their costs wrong, either underpricing and losing silver or overpricing and not selling at all. This tool figures out what you actually spend per item once the bonus is factored in. That number is your real floor. Price above it and you profit. Price below it and you lose.
+        </div>
+        <div class="guide-why-body" style="margin-top:0.75rem">
+          Here is a real example of how this plays out. Buy raw hide in Bridgewatch. Take that hide to Martlock and refine it there. Martlock has a city bonus for leather refining so your return rate is higher, which means your true cost per piece is lower. Then check the market in other cities and find one where refined leather is selling above your true cost. Sell there. The difference is pure profit and you know the exact number before you even start.
+        </div>
+        <div class="guide-why-body" style="margin-top:0.75rem">
+          Without this calculator you are guessing. With it you know your breakeven before you craft a single item.
+        </div>
+      </div>
+
+      <div class="guide-trade-route">
+        <div class="guide-trade-step">
+          <div class="guide-trade-detail">
+            <div class="guide-trade-city">Bridgewatch</div>
+            <div class="guide-trade-action">Buy raw hide. Supply is high here so prices are low.</div>
+          </div>
+        </div>
+        <div class="guide-trade-arrow">↓</div>
+        <div class="guide-trade-step">
+          <div class="guide-trade-detail">
+            <div class="guide-trade-city">Martlock</div>
+            <div class="guide-trade-action">Refine the hide. The city bonus raises your return rate and lowers your true cost.</div>
+          </div>
+        </div>
+        <div class="guide-trade-arrow">↓</div>
+        <div class="guide-trade-step">
+          <div class="guide-trade-detail">
+            <div class="guide-trade-city">Best sell city</div>
+            <div class="guide-trade-action">Check other city markets. Sell wherever the price is above your true cost. That gap is your profit.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-divider"></div>
+
+      <div class="guide-section-title">Step by step</div>
+
+      <div class="guide-steps">
+
+        <div class="guide-step">
+          <div class="guide-step-num">1</div>
+          <div class="guide-step-content">
+            <div class="guide-step-title">Fill in the Materials tab</div>
+            <div class="guide-step-body">Pick one item you want to refine. Open the recipe in-game and enter each raw material, the quantity required, and its current market price. Add a row for every ingredient in the recipe.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">2</div>
+          <div class="guide-step-content">
+            <div class="guide-step-title">Set your return rate</div>
+            <div class="guide-step-body">Drag the slider to your refining return bonus. You can see this number in-game by hovering over the crafting station before you craft. It changes based on your city, your focus, and any bonuses you have active.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">3</div>
+          <div class="guide-step-content">
+            <div class="guide-step-title">Read your true cost</div>
+            <div class="guide-step-body">The True Cost card is the number you need. That is the silver you actually spend per item after the game returns materials to you. Do not sell below this number. Everything above it is profit.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">4</div>
+          <div class="guide-step-content">
+            <div class="guide-step-title">Use Scale for bulk runs</div>
+            <div class="guide-step-body">If you are planning to refine a large batch, go to the Scale tab. It shows your total spend at 100, 500, 1,000 and 5,000 items, or any number you type in. Good for checking whether a session is worth the capital before you commit.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">5</div>
+          <div class="guide-step-content">
+            <div class="guide-step-title">Check the Profit tab before you sell</div>
+            <div class="guide-step-body">Look up the sell price in your target city and enter it in the Profit tab along with how many items you plan to sell. It shows you profit per item, total profit, and your margin. If the number is red your sell price is too low and you need to find a better market.</div>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">6</div>
+          <div class="guide-step-content">
+            <div class="guide-step-title">Add station fees in the Nutrition tab</div>
+            <div class="guide-step-body">If you use a player-owned station they charge you per craft based on how much nutrition your item consumes. Open the Nutrition tab, enter the item value from the in-game item window and the station's price per 100 nutrition, and it tells you the exact fee per craft so you can add it to your true cost.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="guide-divider"></div>
+
+      <div class="guide-section-title">What each tab does</div>
+
+      <div class="guide-tabs-explained">
+
+        <div class="guide-tab-card">
+          <div class="guide-tab-card-header">
+            <span class="guide-tab-badge">Materials</span>
+          </div>
+          <div class="guide-tab-card-body">Your main workspace. Enter the recipe for one item, set your return bonus, and get your true cost. Every other tab pulls from this one so always fill it in first.</div>
+        </div>
+
+        <div class="guide-tab-card">
+          <div class="guide-tab-card-header">
+            <span class="guide-tab-badge">Scale</span>
+          </div>
+          <div class="guide-tab-card-body">Multiplies your true cost by a quantity. Preset options for 100, 500, 1,000 and 5,000 items plus a custom field. Use it to know your total capital requirement before starting a big batch.</div>
+        </div>
+
+        <div class="guide-tab-card">
+          <div class="guide-tab-card-header">
+            <span class="guide-tab-badge">Profit</span>
+          </div>
+          <div class="guide-tab-card-body">Enter a sell price and quantity to see profit per item, total profit, revenue, cost and margin. Green means you make money. Red means you lose it. Adjust the sell price or find a better city until the numbers work.</div>
+        </div>
+
+        <div class="guide-tab-card">
+          <div class="guide-tab-card-header">
+            <span class="guide-tab-badge">Nutrition</span>
+          </div>
+          <div class="guide-tab-card-body">Calculates the fee a player-owned crafting station charges you per craft. The formula is Item Value times 0.1125 to get nutrition consumed, then divided by 100 and multiplied by the station's rate. Tells you the exact silver cost so you can account for it in your pricing.</div>
+        </div>
+
+      </div>
+
     </div>
 
   </main>
@@ -1012,7 +1391,7 @@
     }
 
     /* ── Tab switching ── */
-    const TAB_NAMES = ['materials', 'scale', 'profit', 'nutrition'];
+    const TAB_NAMES = ['materials', 'scale', 'profit', 'nutrition', 'guide'];
 
     function switchTab(name) {
       document.querySelectorAll('.tab-btn').forEach((btn, i) => {
