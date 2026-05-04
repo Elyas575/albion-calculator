@@ -14,8 +14,9 @@ function getCalc() {
   const rows = document.querySelectorAll('.material-row');
   let gross = 0;
   rows.forEach(row => {
-    const qty = parseFloat(row.querySelector('input[type="number"]').value) || 0;
-    const cost = parseFloat(row.querySelector('input[type="text"]').nextElementSibling.value) || 0;
+    const inputs = row.querySelectorAll('input');
+    const qty = parseFloat(inputs[1].value) || 0; // Second input (quantity)
+    const cost = parseFloat(inputs[2].value) || 0; // Third input (cost)
     gross += qty * cost;
   });
   const returned = gross * (returnRate / 100);
