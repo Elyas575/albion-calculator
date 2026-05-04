@@ -928,6 +928,33 @@
 
       <div class="divider"></div>
 
+      <!-- Nutrition Calculator -->
+      <div class="section-label">Nutrition Calculator</div>
+      <div class="nut-inputs">
+        <div class="nut-input-row">
+          <label for="nutItemVal">Item value</label>
+          <input type="number" id="nutItemVal" min="0" step="1" value="16" oninput="calcNutrition(); calculate();" />
+        </div>
+        <div class="nut-input-row">
+          <label for="nutShopPrice">Shop price / 100 nutrition</label>
+          <input type="number" id="nutShopPrice" min="0" step="1" value="500" oninput="calcNutrition(); calculate();" />
+          <span class="unit">silver</span>
+        </div>
+      </div>
+
+      <div class="nut-results">
+        <div class="nut-result-row">
+          <span class="lbl">Nutrition consumed</span>
+          <span class="val" id="nut-result">1.8</span>
+        </div>
+        <div class="nut-result-row">
+          <span class="lbl">Shop fee per craft</span>
+          <span class="val" id="nut-fee">9 silver</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
       <div class="section-label">Return rate</div>
       <div class="return-row">
         <label>Bonus</label>
@@ -966,8 +993,12 @@
           <span class="bl">Materials returned</span>
           <span class="bv minus" id="b-returned">+0 silver</span>
         </div>
+        <div class="breakdown-row">
+          <span class="bl">Nutrition fee</span>
+          <span class="bv" id="b-nutrition">0 silver</span>
+        </div>
         <div class="breakdown-row total">
-          <span class="bl" style="font-weight:500; color:var(--text)">True item cost</span>
+          <span class="bl" style="font-weight:500; color: var(--text);">True item cost</span>
           <span class="bv final" id="b-net">0 silver</span>
         </div>
       </div>
@@ -1067,51 +1098,7 @@
       </div>
     </div>
 
-    <!-- ── NUTRITION PANEL ── -->
-    <div class="panel" id="panel-nutrition">
-
-      <div class="tab-info">
-        <span class="tab-info-text">
-          <strong>Calculate the station fee you pay per craft.</strong>
-          Every item you refine drains the station's nutrition. The owner charges you in silver based on how much your item consumed. Find the Item Value in the item's info window in-game.
-        </span>
-      </div>
-
-      <div class="section-label">Nutrition calculator</div>
-
-      <div class="nut-inputs">
-        <div class="nut-input-row">
-          <label for="nutItemVal">Item value</label>
-          <input type="number" id="nutItemVal" min="0" step="1" value="6" oninput="calcNutrition()" />
-        </div>
-        <div class="nut-input-row">
-          <label for="nutShopPrice">Shop price / 100 nutrition</label>
-          <input type="number" id="nutShopPrice" min="0" step="1" value="500" oninput="calcNutrition()" />
-          <span class="unit">silver</span>
-        </div>
-      </div>
-
-      <div class="nut-results">
-        <div class="nut-result-row">
-          <span class="lbl">Nutrition consumed</span>
-          <span class="val" id="nut-result">0.675</span>
-        </div>
-        <div class="nut-result-row">
-          <span class="lbl">Shop fee per craft</span>
-          <span class="val" id="nut-fee">3.375 silver</span>
-        </div>
-      </div>
-
-      <div class="nut-info-box">
-        <strong>How it works</strong><br>
-        Every craft consumes station nutrition based on the item's value. The station owner charges you per 100 nutrition used.
-        <span class="formula-highlight">Nutrition = Item Value × 0.1125</span>
-        <strong>Example:</strong> T4 Worked Leather has Item Value 16.<br>
-        16 × 0.1125 = <strong>1.8</strong> nutrition consumed per craft.<br>
-        At 500 silver per 100 nutrition the fee is <strong>3.375 silver</strong>.
-      </div>
-    </div>
-
+    
   </main>
 
     <!-- ── GUIDE PANEL ── -->
@@ -1311,17 +1298,24 @@
     /* ── Main calculate ── */
     function calculate() {
       const { gross, returned, net } = getCalc();
+      
+      // Get nutrition fee
+      const itemValue = parseFloat(document.getElementById('nutItemVal').value) || 0;
+      const shopPrice = parseFloat(document.getElementById('nutShopPrice').value) || 0;
+      const nutritionFee = (itemValue * 0.1125 / 100) * shopPrice;
+      const totalCost = net + nutritionFee;
 
       document.getElementById('r-gross').textContent    = fmt(gross);
       document.getElementById('r-returned').textContent = fmt(returned);
-      document.getElementById('r-net').textContent      = fmt(net);
+      document.getElementById('r-net').textContent      = fmt(totalCost);
 
       document.getElementById('b-gross').textContent    = fmt(gross)    + ' silver';
       document.getElementById('b-rate').textContent     = '−' + returnRate.toFixed(1) + '%';
       document.getElementById('b-returned').textContent = '+' + fmt(returned) + ' silver';
-      document.getElementById('b-net').textContent      = fmt(net) + ' silver';
+      document.getElementById('b-nutrition').textContent = fmt(nutritionFee) + ' silver';
+      document.getElementById('b-net').textContent      = fmt(totalCost) + ' silver';
 
-      updateScale(net);
+      updateScale(totalCost);
       calcProfits();
     }
 
