@@ -1101,6 +1101,16 @@
         </div>
       </div>
 
+      <div class="profit-inputs">
+        <div class="profit-input-cell">
+          <label for="accountType">Account type</label>
+          <select id="accountType" onchange="calcProfits()" style="background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 5px 8px; color: var(--text); width: 100%;">
+            <option value="premium">Premium (4% tax)</option>
+            <option value="nonpremium">Non-Premium (8% tax)</option>
+          </select>
+        </div>
+      </div>
+
       <div class="profit-stats">
         <div class="profit-stat">
           <div class="lbl">Profit / item</div>
@@ -1124,6 +1134,22 @@
         <div class="profit-stat">
           <div class="lbl">Margin</div>
           <div class="val" id="pf-margin" style="color:var(--text-muted)">0%</div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top: 1.5rem;">Market fees breakdown</div>
+      <div class="profit-breakdown-row">
+        <div class="profit-stat">
+          <div class="lbl">Setup fee (2.5%)</div>
+          <div class="val" id="pf-setup-fee" style="color:var(--text-muted)">0</div>
+        </div>
+        <div class="profit-stat">
+          <div class="lbl">Sales tax</div>
+          <div class="val" id="pf-sales-tax" style="color:var(--text-muted)">0</div>
+        </div>
+        <div class="profit-stat">
+          <div class="lbl">Net profit (after fees)</div>
+          <div class="val" id="pf-net-profit" style="color:var(--green-pale)">0</div>
         </div>
       </div>
     </div>
@@ -1390,13 +1416,23 @@
     function calcProfits() {
       const sp  = parseFloat(document.getElementById('sellPrice').value) || 0;
       const sq  = parseFloat(document.getElementById('sellQty').value)   || 1;
+      const accountType = document.getElementById('accountType').value;
       const { net } = getCalc();
 
+      // Market fees calculation
+      const setupFeeRate = 0.025; // 2.5%
+      const salesTaxRate = accountType === 'premium' ? 0.04 : 0.08; // 4% or 8%
+      
+      const revenue = sp * sq;
+      const setupFee = revenue * setupFeeRate;
+      const salesTax = revenue * salesTaxRate;
+      const totalMarketFees = setupFee + salesTax;
+      
       const profitPerItem = sp - net;
-      const totalProfit   = profitPerItem * sq;
-      const revenue       = sp  * sq;
-      const totalCost     = net * sq;
-      const margin        = sp > 0 ? (profitPerItem / sp * 100) : 0;
+      const totalProfit = profitPerItem * sq;
+      const netProfitAfterFees = totalProfit - totalMarketFees;
+      const totalCost = net * sq;
+      const margin = sp > 0 ? (profitPerItem / sp * 100) : 0;
 
       document.getElementById('pf-item').textContent    = fmt(Math.round(profitPerItem)) + ' silver';
       document.getElementById('pf-total').textContent   = fmt(Math.round(totalProfit))   + ' silver';
@@ -1404,9 +1440,17 @@
       document.getElementById('pf-cost').textContent    = fmt(Math.round(totalCost));
       document.getElementById('pf-margin').textContent  = margin.toFixed(1) + '%';
 
+      // Market fees display
+      document.getElementById('pf-setup-fee').textContent = fmt(Math.round(setupFee)) + ' silver';
+      document.getElementById('pf-sales-tax').textContent = fmt(Math.round(salesTax)) + ' silver';
+      document.getElementById('pf-net-profit').textContent = fmt(Math.round(netProfitAfterFees)) + ' silver';
+
       const color = profitPerItem > 0 ? 'var(--green-pale)' : profitPerItem < 0 ? 'var(--red)' : 'var(--text)';
       document.getElementById('pf-item').style.color  = color;
       document.getElementById('pf-total').style.color = color;
+      
+      const netColor = netProfitAfterFees > 0 ? 'var(--green-pale)' : netProfitAfterFees < 0 ? 'var(--red)' : 'var(--text)';
+      document.getElementById('pf-net-profit').style.color = netColor;
     }
 
     /* ── Nutrition ── */
