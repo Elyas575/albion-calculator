@@ -72,34 +72,37 @@
 /* ── Material rows ── */
 .col-headers {
   display: grid;
-  grid-template-columns: 1fr 64px 108px 26px;
-  gap: 6px;
+  grid-template-columns: 2fr 80px 100px 40px;
+  gap: 1.6rem;
   margin-bottom: 5px;
+  padding: 0 12px;
 }
 
 .col-headers span {
   font-size: 0.65rem;
   color: var(--text-dim);
-  padding: 0 6px;
+  padding: 0;
 }
 
-.col-headers span:nth-child(2),
-.col-headers span:nth-child(3) { text-align: right; }
+.col-headers span:nth-child(1) { text-align: left; }
+.col-headers span:nth-child(2) { text-align: center; }
+.col-headers span:nth-child(3) { text-align: center; }
+.col-headers span:nth-child(4) { text-align: center; }
 
 .materials-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .material-row {
   display: grid;
-  grid-template-columns: 1fr 80px 120px 32px;
-  gap: 20px;
+  grid-template-columns: 2fr 80px 100px 40px;
+  gap: 1.6rem;
   align-items: center;
   padding: 12px;
-  background: var(--bg-raised);
+  background: var(--bg-input);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
 }
@@ -108,18 +111,18 @@
 .material-row input[type="number"] {
   font-family: 'Crimson Pro', serif;
   font-size: 0.92rem;
-  background: var(--bg-input);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 5px 8px;
+  padding: 6px 8px;
   color: var(--text);
   width: 100%;
   transition: border-color 0.15s;
   outline: none;
 }
 
-.material-row input:focus { border-color: var(--border-hi); }
-.material-row input[type="number"] { text-align: right; }
+.material-row input:focus { border-color: var(--gold); }
+.material-row input[type="number"] { text-align: left; }
 .material-row input::placeholder { color: var(--text-dim); }
 
 input[type="number"] { -moz-appearance: textfield; -webkit-appearance: none; appearance: none; }
@@ -469,8 +472,8 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 /* ── Profit ── */
 .profit-inputs {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -685,6 +688,141 @@ input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
   font-size: 0.87rem;
   color: var(--text-muted);
   line-height: 1.65;
+}
+
+/* ── Responsive Design ── */
+@media (max-width: 768px) {
+  .calc-card {
+    max-width: 100%;
+    margin: 0 0.5rem;
+  }
+  
+  .tab-btn {
+    font-size: 0.5rem;
+    padding: 0.7rem 0.3rem;
+  }
+  
+  .panel {
+    padding: 1rem;
+  }
+  
+  .material-row {
+    grid-template-columns: 1fr 60px 100px 28px;
+    gap: 32px;
+    padding: 8px;
+  }
+  
+  .col-headers {
+    grid-template-columns: 1fr 60px 100px 28px;
+    gap: 32px;
+    padding: 0 14px;
+  }
+  
+  .materials-list {
+    gap: 12px;
+  }
+  
+  .profit-inputs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .profit-stats {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .profit-breakdown-row {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .scale-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .results-stats {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .nut-input-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .nut-input-row label {
+    min-width: auto;
+  }
+  
+  .return-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .return-row label {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.5rem 2rem;
+  }
+  
+  .page-header {
+    margin-bottom: 1rem;
+  }
+  
+  .panel {
+    padding: 0.8rem;
+  }
+  
+  .material-row {
+    grid-template-columns: 1fr 50px 80px 26px;
+    gap: 24px;
+    padding: 6px;
+  }
+  
+  .col-headers {
+    grid-template-columns: 1fr 50px 80px 26px;
+    gap: 24px;
+    padding: 0 12px;
+  }
+  
+  .material-row input[type="text"],
+  .material-row input[type="number"] {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+  }
+  
+  .tab-btn {
+    font-size: 0.45rem;
+    padding: 0.6rem 0.2rem;
+  }
+  
+  .warning-banner {
+    padding: 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .profit-input-cell input,
+  .profit-input-cell select {
+    font-size: 0.9rem;
+  }
+  
+  .scale-cell {
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .custom-qty-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
 }
 
 .guide-trade-route {
