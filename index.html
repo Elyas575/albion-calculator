@@ -897,9 +897,9 @@
 
     <!-- Tabs -->
     <div class="card-tabs">
-      <button class="tab-btn active" onclick="switchTab('materials')">Materials</button>
-      <button class="tab-btn"        onclick="switchTab('scale')">Scale</button>
-      <button class="tab-btn"        onclick="switchTab('profit')">Profit</button>
+      <button class="tab-btn active" onclick="switchTab('materials')">1. Materials</button>
+      <button class="tab-btn"        onclick="switchTab('scale')">2. Scale</button>
+      <button class="tab-btn"        onclick="switchTab('profit')">3. Profit</button>
       <button class="tab-btn"        onclick="switchTab('guide')">Guide</button>
     </div>
 
@@ -908,7 +908,8 @@
 
       <div class="tab-info">
         <span class="tab-info-text">
-          <strong>Want to see if a craft is actually worth it?</strong> Enter the item you're making and the current price of the raw materials that you need to buy to craft that item. Don't forget to set your Refining Return Bonus—this allows me to calculate your True Cost (the actual silver spent after you get some materials back) so you can see your real profit.
+          <strong>Step 1</strong><br>
+          Want to see if a craft is actually worth it? Enter the item you're making and the current price of the raw materials that you need to buy to craft that item. Don't forget to set your Refining Return Bonus—this allows me to calculate your True Cost (the actual silver spent after you get some materials back) so you can see your real profit.
         </span>
       </div>
 
@@ -1007,8 +1008,8 @@
 
       <div class="tab-info">
         <span class="tab-info-text">
-          <strong>See how your per-item cost scales across larger batches.</strong>
-          All figures use the true cost from the Materials tab. Use the custom input to calculate any quantity you have in mind.
+          <strong>Step 2</strong><br>
+          See how your per-item cost scales across larger batches. All figures use the true cost from the Materials tab. Use the custom input to calculate any quantity you have in mind.
         </span>
       </div>
 
@@ -1049,9 +1050,8 @@
 
       <div class="tab-info">
         <span class="tab-info-text">
-          <strong>Enter your expected sell price and how many items you plan to sell.</strong>
-
-          Profit is calculated against the true cost from the Materials tab. Green means you are making money. Red means you are selling at a loss.
+          <strong>Step 3</strong><br>
+          Enter your expected sell price and how many items you plan to sell. Profit is calculated against the true cost from the Materials tab. Green means you are making money. Red means you are selling at a loss.
         </span>
       </div>
 
@@ -1106,13 +1106,10 @@
       <div class="guide-why">
         <div class="guide-why-title">Why use this calculator?</div>
         <div class="guide-why-body">
-          Every time you refine materials, the game gives a percentage of them back to you. That's your return bonus. Most players never account for it and end up calculating their costs wrong, either underpricing and losing silver or overpricing and not selling at all. This tool figures out what you actually spend per item once the bonus is factored in. That number is your real floor. Price above it and you profit. Price below it and you lose.
+          Every time you refine materials, the game gives a percentage of them back to you. That's your return bonus. Most players never account for it and end up calculating their costs wrong, either underpricing and losing silver or overpricing and not selling fast enough. This tool figures out what you actually spend per item once the bonus is factored in. That number is your real floor. Price above it and you profit. Price below it and you lose.
         </div>
         <div class="guide-why-body" style="margin-top:0.75rem">
           Here is a real example of how this plays out. Buy raw hide in Bridgewatch. Take that hide to Martlock and refine it there. Martlock has a city bonus for leather refining so your return rate is higher, which means your true cost per piece is lower. Then check the market in other cities and find one where refined leather is selling above your true cost. Sell there. The difference is pure profit and you know the exact number before you even start.
-        </div>
-        <div class="guide-why-body" style="margin-top:0.75rem">
-          Without this calculator you are guessing. With it you know your breakeven before you craft a single item.
         </div>
       </div>
 
@@ -1120,7 +1117,7 @@
         <div class="guide-trade-step">
           <div class="guide-trade-detail">
             <div class="guide-trade-city">Bridgewatch</div>
-            <div class="guide-trade-action">Buy raw hide. Supply is high here so prices are low.</div>
+            <div class="guide-trade-action">Buy raw hide. Supply is high here so prices are usually low.</div>
           </div>
         </div>
         <div class="guide-trade-arrow">↓</div>
@@ -1137,6 +1134,14 @@
             <div class="guide-trade-action">Check other city markets. Sell wherever the price is above your true cost. That gap is your profit.</div>
           </div>
         </div>
+      </div>
+
+      <div class="guide-divider"></div>
+
+      <div class="guide-section-title">Works for all items</div>
+      
+      <div class="guide-why-body" style="margin-bottom: 1rem;">
+        This is just one example. Try to find any other item you want - this method works for all non-artifact items. Artifact items don't get returned to you as the bonus, so they're not calculated in the return rate system.
       </div>
 
       <div class="guide-divider"></div>
