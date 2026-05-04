@@ -881,6 +881,27 @@
       line-height: 1.65;
     }
 
+    /* ── Warning Banner ── */
+    .warning-banner {
+      background: var(--bg-raised);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .warning-text {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .warning-highlight {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
   </style>
 </head>
 <body>
@@ -894,6 +915,16 @@
   </header>
 
   <main class="calc-card">
+
+    <!-- Warning Banner -->
+    <div class="warning-banner">
+      <div class="warning-text">
+        <strong>Important:</strong> This calculator Works for <span class="warning-highlight">NON-ARTIFACT items only</span>. 
+        <a href="https://wiki.albiononline.com/wiki/Artifact" target="_blank" style="color: var(--gold); text-decoration: underline;">Artifacts</a> don't get refining/crafting bonuses and aren't returned as bonus materials.
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5rem;"></div>
 
     <!-- Tabs -->
     <div class="card-tabs">
@@ -1104,7 +1135,7 @@
     <div class="panel" id="panel-guide">
 
       <div class="guide-why">
-        <div class="guide-why-title">Why use this calculator?</div>
+        <div class="guide-why-title">Why use this calculator? (non-artifact items ONLY)</div>
         <div class="guide-why-body">
           Every time you refine materials, the game gives a percentage of them back to you. That's your return bonus. Most players never account for it and end up calculating their costs wrong, either underpricing and losing silver or overpricing and not selling fast enough. This tool figures out what you actually spend per item once the bonus is factored in. That number is your real floor. Price above it and you profit. Price below it and you lose.
         </div>
